@@ -1,15 +1,15 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { Link, useLocation } from 'react-router-dom';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const pathname = usePathname();
+  const location = useLocation();
+  const pathname = location.pathname;
 
   // Handle scroll events
   useEffect(() => {
@@ -99,12 +99,12 @@ export default function Navbar() {
         isScrolled ? 'bg-black/90 backdrop-blur-sm shadow-lg' : isDarkBg ? 'bg-black' : 'bg-transparent'
       }`}>
         <div className="container mx-auto px-4 md:px-16 py-8 flex justify-between items-center">
-          <Link href="/" className="text-2xl font-bold text-[#bca16b] transition-colors hover:text-[#d4b87d]">Logo</Link>
+          <Link to="/" className="text-2xl font-bold text-[#bca16b] transition-colors hover:text-[#d4b87d]">Logo</Link>
           <nav>
             <ul className="flex gap-8">
               <li>
                 <Link 
-                  href="/" 
+                  to="/" 
                   className={`text-lg transition-colors ${
                     pathname === '/' ? 'text-[#bca16b]' : 'hover:text-[#bca16b]'
                   }`}
@@ -114,7 +114,7 @@ export default function Navbar() {
               </li>
               <li>
                 <Link 
-                  href="/#feel-good-move-better" 
+                  to="/#feel-good-move-better" 
                   onClick={(e) => scrollToSection(e, 'feel-good-move-better')}
                   className="text-lg transition-colors hover:text-[#bca16b]"
                 >
@@ -123,7 +123,7 @@ export default function Navbar() {
               </li>
               <li>
                 <Link 
-                  href="/#gallery" 
+                  to="/#gallery" 
                   onClick={(e) => scrollToSection(e, 'gallery')}
                   className="text-lg transition-colors hover:text-[#bca16b]"
                 >
@@ -132,7 +132,7 @@ export default function Navbar() {
               </li>
               <li>
                 <Link 
-                  href="/#blog" 
+                  to="/#blog" 
                   onClick={(e) => scrollToSection(e, 'blog')}
                   className="text-lg transition-colors hover:text-[#bca16b]"
                 >
@@ -141,7 +141,7 @@ export default function Navbar() {
               </li>
               <li>
                 <Link 
-                  href="/#about" 
+                  to="/#about" 
                   onClick={(e) => scrollToSection(e, 'about')}
                   className="text-lg transition-colors hover:text-[#bca16b]"
                 >
@@ -150,7 +150,7 @@ export default function Navbar() {
               </li>
               <li>
                 <Link 
-                  href="/contact" 
+                  to="/contact" 
                   className={`text-lg transition-colors ${
                     pathname === '/contact' ? 'text-[#bca16b]' : 'hover:text-[#bca16b]'
                   }`}
