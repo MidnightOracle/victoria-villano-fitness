@@ -130,11 +130,12 @@ export default function Navbar() {
               </li>
               <li>
                 <Link 
-                  to="/#blog" 
-                  onClick={(e) => scrollToSection(e, 'blog')}
-                  className="text-lg transition-colors hover:text-[#bca16b]"
+                  to="/blog" 
+                  className={`text-lg transition-colors ${
+                    pathname === '/blog' ? 'text-[#bca16b]' : 'hover:text-[#bca16b]'
+                  }`}
                 >
-                  Blog
+                  Flow, Strength & Balance
                 </Link>
               </li>
               <li>

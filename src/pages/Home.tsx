@@ -95,31 +95,33 @@ const Home: React.FC = () => {
       {/* Flow, Strength & Balance Section */}
       <section className="py-16 bg-black">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12 text-white">Flow, Strength & Balance</h2>
+          <Link to="/blog">
+            <h2 className="text-3xl font-bold text-center mb-12 text-white hover:text-[#bca16b] transition-colors">Flow, Strength & Balance</h2>
+          </Link>
           <p className="text-center text-gray-300 mb-12">Your gym space for mindful stress, mental recovery, and healthy living</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-white rounded-lg overflow-hidden">
               <img src="/images/blog-1.jpg" alt="Blog post 1" className="w-full h-48 object-cover" />
               <div className="p-6">
-                <h3 className="font-bold text-xl mb-4">Blog title heading will go here</h3>
-                <p className="text-gray-600 mb-4">Short intro text will go here to explain what this blog post is about and a little more...</p>
-                <Link to="/blog/1" className="text-black font-medium">Read More →</Link>
+                <h3 className="font-bold text-xl mb-4">Mindful Movement: The Key to Better Exercise</h3>
+                <p className="text-gray-600 mb-4">Discover how mindful movement can enhance your workout effectiveness and prevent injuries.</p>
+                <Link to="/blog/mindful-movement" className="text-black font-medium">Read More →</Link>
               </div>
             </div>
             <div className="bg-white rounded-lg overflow-hidden">
               <img src="/images/blog-2.jpg" alt="Blog post 2" className="w-full h-48 object-cover" />
               <div className="p-6">
-                <h3 className="font-bold text-xl mb-4">Blog title heading will go here</h3>
-                <p className="text-gray-600 mb-4">Short intro text will go here to explain what this blog post is about and a little more...</p>
-                <Link to="/blog/2" className="text-black font-medium">Read More →</Link>
+                <h3 className="font-bold text-xl mb-4">Building Strength Foundations</h3>
+                <p className="text-gray-600 mb-4">Learn the fundamental principles of strength training for long-term success.</p>
+                <Link to="/blog/strength-foundations" className="text-black font-medium">Read More →</Link>
               </div>
             </div>
             <div className="bg-white rounded-lg overflow-hidden">
               <img src="/images/blog-3.jpg" alt="Blog post 3" className="w-full h-48 object-cover" />
               <div className="p-6">
-                <h3 className="font-bold text-xl mb-4">Blog title heading will go here</h3>
-                <p className="text-gray-600 mb-4">Short intro text will go here to explain what this blog post is about and a little more...</p>
-                <Link to="/blog/3" className="text-black font-medium">Read More →</Link>
+                <h3 className="font-bold text-xl mb-4">Finding Balance in Your Wellness Journey</h3>
+                <p className="text-gray-600 mb-4">Tips for creating a balanced approach to fitness and overall wellness.</p>
+                <Link to="/blog/balance-wellness" className="text-black font-medium">Read More →</Link>
               </div>
             </div>
           </div>
