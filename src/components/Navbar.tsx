@@ -6,6 +6,7 @@ export default function Navbar() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   const pathname = location.pathname;
 
@@ -58,6 +59,11 @@ export default function Navbar() {
     setMounted(true);
   }, []);
 
+  // Close menu when route changes
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [pathname]);
+
   // Determine if we're on a dark background page
   const isDarkBg = pathname === '/blog' || pathname.startsWith('/blog/');
 
@@ -79,6 +85,15 @@ export default function Navbar() {
     return null;
   }
 
+  const navLinks = [
+    { to: '/', label: 'Home' },
+    { to: '/#feel-good-move-better', label: 'Services', onClick: (e: React.MouseEvent<HTMLAnchorElement>) => scrollToSection(e, 'feel-good-move-better') },
+    { to: '/#gallery', label: 'Gallery', onClick: (e: React.MouseEvent<HTMLAnchorElement>) => scrollToSection(e, 'gallery') },
+    { to: '/blog', label: 'Flow, Strength & Balance' },
+    { to: '/#about', label: 'About Me', onClick: (e: React.MouseEvent<HTMLAnchorElement>) => scrollToSection(e, 'about') },
+    { to: '/contact', label: 'Contact' }
+  ];
+
   return (
     <>
       {/* Scroll Progress Bar */}
@@ -96,71 +111,76 @@ export default function Navbar() {
       <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         isScrolled ? 'bg-black/90 backdrop-blur-sm shadow-lg' : isDarkBg ? 'bg-black' : 'bg-transparent'
       }`}>
-        <div className="container mx-auto px-4 md:px-16 py-8 flex justify-between items-center">
-          <Link to="/" className="text-2xl font-bold text-[#bca16b] transition-colors hover:text-[#d4b87d]">Logo</Link>
-          <nav>
-            <ul className="flex gap-8">
-              <li>
-                <Link 
-                  to="/" 
-                  className={`text-lg transition-colors ${
-                    pathname === '/' ? 'text-[#bca16b]' : 'hover:text-[#bca16b]'
-                  }`}
-                >
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  to="/#feel-good-move-better" 
-                  onClick={(e) => scrollToSection(e, 'feel-good-move-better')}
-                  className="text-lg transition-colors hover:text-[#bca16b]"
-                >
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  to="/#gallery" 
-                  onClick={(e) => scrollToSection(e, 'gallery')}
-                  className="text-lg transition-colors hover:text-[#bca16b]"
-                >
-                  Gallery
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  to="/blog" 
-                  className={`text-lg transition-colors ${
-                    pathname === '/blog' ? 'text-[#bca16b]' : 'hover:text-[#bca16b]'
-                  }`}
-                >
-                  Flow, Strength & Balance
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  to="/#about" 
-                  onClick={(e) => scrollToSection(e, 'about')}
-                  className="text-lg transition-colors hover:text-[#bca16b]"
-                >
-                  About Me
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  to="/contact" 
-                  className={`text-lg transition-colors ${
-                    pathname === '/contact' ? 'text-[#bca16b]' : 'hover:text-[#bca16b]'
-                  }`}
-                >
-                  Contact
-                </Link>
-              </li>
+        <div className="container mx-auto px-4 py-4 md:py-8 flex justify-between items-center">
+          <Link to="/" className="text-xl md:text-2xl font-bold text-[#bca16b] transition-colors hover:text-[#d4b87d]">Logo</Link>
+          
+          {/* Mobile Menu Button */}
+          <button 
+            className="md:hidden text-[#bca16b] hover:text-[#d4b87d] transition-colors"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
+              {isMenuOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:block">
+            <ul className="flex gap-6 lg:gap-8">
+              {navLinks.map((link) => (
+                <li key={link.to}>
+                  <Link 
+                    to={link.to} 
+                    onClick={link.onClick}
+                    className={`text-base lg:text-lg transition-colors ${
+                      pathname === link.to ? 'text-[#bca16b]' : 'text-white hover:text-[#bca16b]'
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </nav>
         </div>
+
+        {/* Mobile Navigation */}
+        <nav className={`md:hidden transition-all duration-300 overflow-hidden ${
+          isMenuOpen ? 'max-h-screen bg-black/95 border-t border-[#bca16b]/20' : 'max-h-0'
+        }`}>
+          <ul className="container mx-auto px-4 py-4">
+            {navLinks.map((link) => (
+              <li key={link.to} className="mb-4 last:mb-0">
+                <Link 
+                  to={link.to} 
+                  onClick={link.onClick}
+                  className={`block py-2 text-lg transition-colors ${
+                    pathname === link.to ? 'text-[#bca16b]' : 'text-white hover:text-[#bca16b]'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </header>
+
+      {/* Scroll to Top Button */}
+      <button
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        className={`fixed bottom-4 right-4 bg-black/90 text-[#bca16b] p-3 rounded-full shadow-lg transition-all duration-300 hover:bg-black hover:text-[#d4b87d] ${
+          showScrollTop ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
+        }`}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+      </button>
     </>
   );
 } 
