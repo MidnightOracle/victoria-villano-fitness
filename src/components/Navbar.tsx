@@ -86,11 +86,18 @@ export default function Navbar() {
   }
 
   const navLinks = [
-    { to: '/', label: 'Home' },
+    { to: '/', label: 'Home', onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
+      e.preventDefault();
+      if (pathname !== '/') {
+        window.location.href = '/';
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }},
     { to: '/#feel-good-move-better', label: 'Services', onClick: (e: React.MouseEvent<HTMLAnchorElement>) => scrollToSection(e, 'feel-good-move-better') },
     { to: '/#gallery', label: 'Gallery', onClick: (e: React.MouseEvent<HTMLAnchorElement>) => scrollToSection(e, 'gallery') },
-    { to: '/blog', label: 'Flow, Strength & Balance' },
-    { to: '/#about', label: 'About Me', onClick: (e: React.MouseEvent<HTMLAnchorElement>) => scrollToSection(e, 'about') },
+    { to: '/#flow-strength-balance', label: 'Flow, Strength & Balance', onClick: (e: React.MouseEvent<HTMLAnchorElement>) => scrollToSection(e, 'flow-strength-balance') },
+    { to: '/#about-victoria', label: 'About Me', onClick: (e: React.MouseEvent<HTMLAnchorElement>) => scrollToSection(e, 'about-victoria') },
     { to: '/contact', label: 'Contact' }
   ];
 

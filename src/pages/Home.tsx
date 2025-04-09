@@ -5,7 +5,7 @@ const Home: React.FC = () => {
   return (
     <div className="relative">
       {/* Hero Section */}
-      <section className="relative min-h-screen w-full bg-black flex flex-col md:flex-row">
+      <section id="hero" className="relative min-h-screen w-full bg-black flex flex-col md:flex-row">
         {/* Left side - Image */}
         <div className="w-full md:w-1/2 h-[50vh] md:h-auto relative">
           <img 
@@ -36,7 +36,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Feel Good, Move Better Section */}
-      <section className="py-16 md:py-24 bg-[#bca16b]">
+      <section id="feel-good-move-better" className="py-16 md:py-24 bg-[#bca16b]">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-10 md:mb-16 text-black">Feel Good, Move Better</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
@@ -103,7 +103,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Image Gallery */}
-      <section className="py-12 md:py-16 bg-[#bca16b]">
+      <section id="gallery" className="py-12 md:py-16 bg-[#bca16b]">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 md:mb-8 text-black">Image Gallery</h2>
           <div className="relative">
@@ -122,7 +122,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Flow, Strength & Balance Section */}
-      <section className="py-12 md:py-16 bg-black">
+      <section id="flow-strength-balance" className="py-12 md:py-16 bg-black">
         <div className="container mx-auto px-4">
           <Link to="/blog">
             <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 md:mb-12 text-white hover:text-[#bca16b] transition-colors">Flow, Strength & Balance</h2>
@@ -158,7 +158,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* About Victoria Section */}
-      <section className="py-12 md:py-16 bg-[#bca16b]">
+      <section id="about-victoria" className="py-12 md:py-16 bg-[#bca16b]">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div>
