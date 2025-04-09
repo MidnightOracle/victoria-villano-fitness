@@ -93,12 +93,25 @@ export default function Navbar() {
       } else {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
+      setIsMenuOpen(false);
     }},
-    { to: '/#feel-good-move-better', label: 'Services', onClick: (e: React.MouseEvent<HTMLAnchorElement>) => scrollToSection(e, 'feel-good-move-better') },
-    { to: '/#gallery', label: 'Gallery', onClick: (e: React.MouseEvent<HTMLAnchorElement>) => scrollToSection(e, 'gallery') },
-    { to: '/#flow-strength-balance', label: 'Flow, Strength & Balance', onClick: (e: React.MouseEvent<HTMLAnchorElement>) => scrollToSection(e, 'flow-strength-balance') },
-    { to: '/#about-victoria', label: 'About Me', onClick: (e: React.MouseEvent<HTMLAnchorElement>) => scrollToSection(e, 'about-victoria') },
-    { to: '/contact', label: 'Contact' }
+    { to: '/#feel-good-move-better', label: 'Services', onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
+      scrollToSection(e, 'feel-good-move-better');
+      setIsMenuOpen(false);
+    }},
+    { to: '/#gallery', label: 'Gallery', onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
+      scrollToSection(e, 'gallery');
+      setIsMenuOpen(false);
+    }},
+    { to: '/#flow-strength-balance', label: 'Flow, Strength & Balance', onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
+      scrollToSection(e, 'flow-strength-balance');
+      setIsMenuOpen(false);
+    }},
+    { to: '/#about-victoria', label: 'About Me', onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
+      scrollToSection(e, 'about-victoria');
+      setIsMenuOpen(false);
+    }},
+    { to: '/contact', label: 'Contact', onClick: () => setIsMenuOpen(false) }
   ];
 
   return (
