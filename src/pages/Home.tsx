@@ -5,50 +5,79 @@ const Home: React.FC = () => {
   return (
     <div className="relative">
       {/* Hero Section */}
-      <section className="relative h-screen w-full bg-black flex items-center">
-        <div className="absolute inset-0">
+      <section className="relative min-h-screen w-full bg-black flex">
+        {/* Left side - Image */}
+        <div className="w-1/2 relative">
           <img 
             src="/images/hero-meditation.jpg" 
             alt="Meditation at sunset" 
-            className="w-full h-full object-cover opacity-80"
+            className="w-full h-full object-cover"
           />
+          <div className="absolute inset-0 bg-black/20"></div>
         </div>
         
-        <div className="relative z-10 container mx-auto px-4">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 text-white max-w-2xl">
-            Empowering You to a Healthier, Stronger Life
-          </h1>
-          <p className="text-xl text-white mb-8 max-w-xl">
-            Join group classes to help improve mobility to move free, feel good again, and live a fuller life!
-          </p>
-          <Link 
-            to="/contact"
-            className="inline-block bg-[#bca16b] text-black px-8 py-3 rounded text-lg font-medium hover:bg-[#d4b87d] transition-colors"
-          >
-            Book a Session →
-          </Link>
+        {/* Right side - Content */}
+        <div className="w-1/2 flex items-center bg-black p-12">
+          <div className="max-w-xl">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white leading-tight">
+              Empowering You to a Healthier, Stronger Life
+            </h1>
+            <p className="text-lg text-gray-300 mb-8">
+              Join group classes or book a private session to move, feel, and live better, right here in Palm Coast.
+            </p>
+            <Link 
+              to="/contact"
+              className="inline-flex items-center bg-[#bca16b] text-black px-8 py-4 rounded text-lg font-medium hover:bg-[#d4b87d] transition-colors"
+            >
+              Book a Session <span className="ml-2">→</span>
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* Feel Good, Move Better Section */}
-      <section className="py-16 bg-[#bca16b]">
+      <section className="py-24 bg-[#bca16b]">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12 text-black">Feel Good, Move Better</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <h2 className="text-5xl font-bold text-center mb-16 text-black">Feel Good, Move Better</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             <div className="text-center">
-              <img src="/images/yoga-fitness.jpg" alt="Yoga/Golf Fitness" className="w-full h-64 object-cover rounded-lg mb-4" />
-              <h3 className="font-semibold text-xl mb-2">Yoga/Golf Fitness</h3>
-              <p className="text-sm text-black/80">Build strength, flexibility and balance to move better and stay focused on and off the mat</p>
+              <div className="rounded-[32px] overflow-hidden mb-6 aspect-square">
+                <img 
+                  src="/images/yoga-fitness.jpg" 
+                  alt="Yoga/Golf Fitness" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <h3 className="text-2xl font-bold mb-4 text-black">Yoga/Golf Fitness</h3>
+              <p className="text-lg text-black">
+                Build strength, flexibility, and balance to move better and feel stronger, on or off the course.
+              </p>
             </div>
             <div className="text-center">
-              <img src="/images/aqua-fitness.jpg" alt="Aqua Fitness" className="w-full h-64 object-cover rounded-lg mb-4" />
-              <h3 className="font-semibold text-xl mb-2">Aqua Fitness</h3>
-              <p className="text-sm text-black/80">A refreshing full-body workout using water resistance to boost strength and mobility</p>
+              <div className="rounded-[32px] overflow-hidden mb-6 aspect-square">
+                <img 
+                  src="/images/aqua-fitness.jpg" 
+                  alt="Aqua Fitness" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <h3 className="text-2xl font-bold mb-4 text-black">Aqua Fitness</h3>
+              <p className="text-lg text-black">
+                A refreshing full-body workout using water resistance to boost strength and endurance safely.
+              </p>
             </div>
             <div className="text-center">
-              <img src="/images/dance-fit.jpg" alt="Dance Fit" className="w-full h-64 object-cover rounded-lg mb-4" />
-              <h3 className="font-semibold text-xl mb-2">Dance Fit</h3>
-              <p className="text-sm text-black/80">Basic cardio, improve coordination and let your mood lift while dancing to fun beats</p>
+              <div className="rounded-[32px] overflow-hidden mb-6 aspect-square">
+                <img 
+                  src="/images/dance-fit.jpg" 
+                  alt="Dance Fit" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <h3 className="text-2xl font-bold mb-4 text-black">Dance Fit</h3>
+              <p className="text-lg text-black">
+                Burn calories, improve coordination, and lift your mood — all while dancing to fun rhythms.
+              </p>
             </div>
           </div>
         </div>
