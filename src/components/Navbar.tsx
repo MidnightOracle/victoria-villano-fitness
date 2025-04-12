@@ -131,8 +131,14 @@ export default function Navbar() {
       <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         isScrolled ? 'bg-black/90 backdrop-blur-sm shadow-lg' : isDarkBg ? 'bg-black' : 'bg-transparent'
       }`}>
-        <div className="container mx-auto px-4 py-4 md:py-8 flex justify-between items-center">
-          <Link to="/" className="text-xl md:text-2xl font-bold text-[#bca16b] transition-colors hover:text-[#d4b87d]">Logo</Link>
+        <div className="container mx-auto px-4 py-4 md:py-6 flex justify-between items-center">
+          <Link to="/" className="flex items-center">
+            <img 
+              src="/images/villano-fitness-logo.png" 
+              alt="Villano Fitness" 
+              className="h-12 md:h-16 w-auto transition-opacity hover:opacity-80"
+            />
+          </Link>
           
           {/* Mobile Menu Button */}
           <button 
