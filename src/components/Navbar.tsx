@@ -129,25 +129,26 @@ export default function Navbar() {
 
       {/* Header/Nav */}
       <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        isScrolled ? 'bg-black/90 backdrop-blur-sm shadow-lg' : isDarkBg ? 'bg-black' : 'bg-transparent'
+        isScrolled ? 'bg-black/90 backdrop-blur-sm shadow-lg' : ''
       }`}>
-        <div className="container mx-auto px-4 py-4 md:py-6 flex justify-between items-center">
-          <Link to="/" className="flex items-center">
+        <div className="container mx-auto px-6 py-3 flex items-center justify-between">
+          {/* Logo */}
+          <Link to="/" className="flex items-center flex-shrink-0 -mt-1">
             <img 
-              src="/images/villano-fitness-logo.jpg" 
+              src="/images/villano-fitness-logo.png" 
               alt="Villano Fitness"
               width="200"
               height="80" 
               className="h-10 md:h-14 w-auto transition-opacity hover:opacity-80"
               style={{
-                filter: isScrolled || isDarkBg ? 'none' : 'drop-shadow(2px 2px 2px rgba(0,0,0,0.5))'
+                filter: isScrolled ? 'none' : 'drop-shadow(2px 2px 2px rgba(0,0,0,0.5))'
               }}
             />
           </Link>
           
           {/* Mobile Menu Button */}
           <button 
-            className="md:hidden text-[#bca16b] hover:text-[#d4b87d] transition-colors"
+            className="md:hidden text-[#bca16b] hover:text-[#d4b87d] transition-colors -mt-1"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
@@ -160,14 +161,14 @@ export default function Navbar() {
           </button>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:block">
-            <ul className="flex gap-6 lg:gap-8">
+          <nav className="hidden md:block flex-1 max-w-4xl ml-auto -mt-1">
+            <ul className="flex items-center justify-end gap-8 lg:gap-10">
               {navLinks.map((link) => (
                 <li key={link.to}>
                   <Link 
                     to={link.to} 
                     onClick={link.onClick}
-                    className={`text-base lg:text-lg transition-colors ${
+                    className={`text-base font-medium transition-colors ${
                       pathname === link.to ? 'text-[#bca16b]' : 'text-white hover:text-[#bca16b]'
                     }`}
                   >
@@ -181,15 +182,15 @@ export default function Navbar() {
 
         {/* Mobile Navigation */}
         <nav className={`md:hidden transition-all duration-300 overflow-hidden ${
-          isMenuOpen ? 'max-h-screen bg-black/95 border-t border-[#bca16b]/20' : 'max-h-0'
+          isMenuOpen ? 'max-h-screen bg-black border-t border-[#bca16b]/20' : 'max-h-0'
         }`}>
-          <ul className="container mx-auto px-4 py-4">
+          <ul className="container mx-auto px-6 py-3 space-y-3">
             {navLinks.map((link) => (
-              <li key={link.to} className="mb-4 last:mb-0">
+              <li key={link.to}>
                 <Link 
                   to={link.to} 
                   onClick={link.onClick}
-                  className={`block py-2 text-lg transition-colors ${
+                  className={`block py-2 text-lg font-medium transition-colors ${
                     pathname === link.to ? 'text-[#bca16b]' : 'text-white hover:text-[#bca16b]'
                   }`}
                 >
