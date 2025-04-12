@@ -134,9 +134,14 @@ export default function Navbar() {
         <div className="container mx-auto px-4 py-4 md:py-6 flex justify-between items-center">
           <Link to="/" className="flex items-center">
             <img 
-              src="/images/villano-fitness-logo.png" 
-              alt="Villano Fitness" 
-              className="h-12 md:h-16 w-auto transition-opacity hover:opacity-80"
+              src="/images/villano-fitness-logo.jpg" 
+              alt="Villano Fitness"
+              width="200"
+              height="80" 
+              className="h-10 md:h-14 w-auto transition-opacity hover:opacity-80"
+              style={{
+                filter: isScrolled || isDarkBg ? 'none' : 'drop-shadow(2px 2px 2px rgba(0,0,0,0.5))'
+              }}
             />
           </Link>
           
