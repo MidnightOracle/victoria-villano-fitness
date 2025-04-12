@@ -125,7 +125,7 @@ export default function Navbar() {
       </div>
 
       {/* Header/Nav */}
-      <header className="fixed top-0 left-0 right-0 z-40 transition-all duration-300">
+      <header className="fixed top-0 left-0 right-0 z-40 transition-all duration-300 bg-black/20 backdrop-blur-[2px]">
         <div className="container mx-auto px-6 py-3 flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center flex-shrink-0 -mt-1">
