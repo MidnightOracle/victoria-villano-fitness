@@ -4,14 +4,15 @@ import Home from './pages/Home'
 import Blog from './pages/Blog'
 import BlogPost from './pages/BlogPost'
 import Contact from './pages/Contact'
+import Footer from './components/Footer'
 import './index.css'
 
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-black text-white">
+      <div className="flex flex-col min-h-screen">
         <Navbar />
-        <main className="pt-20">
+        <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/blog" element={<Blog />} />
@@ -19,6 +20,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>
+        <Footer />
       </div>
     </Router>
   )
