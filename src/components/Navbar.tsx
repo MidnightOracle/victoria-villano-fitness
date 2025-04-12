@@ -17,9 +17,6 @@ export default function Navbar() {
       const windowHeight = window.innerHeight;
       const docHeight = document.documentElement.scrollHeight;
       
-      // Update navbar background
-      setIsScrolled(scrollPosition > 50);
-      
       // Update scroll progress
       const scrolled = (scrollPosition / (docHeight - windowHeight)) * 100;
       setScrollProgress(scrolled);
@@ -128,9 +125,7 @@ export default function Navbar() {
       </div>
 
       {/* Header/Nav */}
-      <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        isScrolled ? 'bg-black/90 backdrop-blur-sm shadow-lg' : ''
-      }`}>
+      <header className="fixed top-0 left-0 right-0 z-40 transition-all duration-300">
         <div className="container mx-auto px-6 py-3 flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center flex-shrink-0 -mt-1">
@@ -141,14 +136,14 @@ export default function Navbar() {
               height="80" 
               className="h-10 md:h-14 w-auto transition-opacity hover:opacity-80"
               style={{
-                filter: isScrolled ? 'none' : 'drop-shadow(2px 2px 2px rgba(0,0,0,0.5))'
+                filter: 'drop-shadow(2px 2px 2px rgba(0,0,0,0.5))'
               }}
             />
           </Link>
           
           {/* Mobile Menu Button */}
           <button 
-            className="md:hidden text-[#bca16b] hover:text-[#d4b87d] transition-colors -mt-1"
+            className="md:hidden text-[#bca16b] hover:text-[#d4b87d] transition-colors -mt-1 drop-shadow-[0_2px_2px_rgba(0,0,0,0.5)]"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
@@ -168,7 +163,7 @@ export default function Navbar() {
                   <Link 
                     to={link.to} 
                     onClick={link.onClick}
-                    className={`text-base font-medium transition-colors ${
+                    className={`text-base font-medium transition-colors drop-shadow-[0_2px_2px_rgba(0,0,0,0.5)] ${
                       pathname === link.to ? 'text-[#bca16b]' : 'text-white hover:text-[#bca16b]'
                     }`}
                   >
@@ -182,7 +177,7 @@ export default function Navbar() {
 
         {/* Mobile Navigation */}
         <nav className={`md:hidden transition-all duration-300 overflow-hidden ${
-          isMenuOpen ? 'max-h-screen bg-black border-t border-[#bca16b]/20' : 'max-h-0'
+          isMenuOpen ? 'max-h-screen bg-black/95 backdrop-blur-sm border-t border-[#bca16b]/20' : 'max-h-0'
         }`}>
           <ul className="container mx-auto px-6 py-3 space-y-3">
             {navLinks.map((link) => (
@@ -190,7 +185,7 @@ export default function Navbar() {
                 <Link 
                   to={link.to} 
                   onClick={link.onClick}
-                  className={`block py-2 text-lg font-medium transition-colors ${
+                  className={`block py-2 text-lg font-medium transition-colors drop-shadow-[0_2px_2px_rgba(0,0,0,0.5)] ${
                     pathname === link.to ? 'text-[#bca16b]' : 'text-white hover:text-[#bca16b]'
                   }`}
                 >
