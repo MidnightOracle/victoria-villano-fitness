@@ -1,7 +1,25 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Footer: React.FC = () => {
+  const location = useLocation();
+  const pathname = location.pathname;
+
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+    e.preventDefault();
+    if (pathname !== '/') {
+      window.location.href = `/#${sectionId}`;
+    } else {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        window.history.pushState(null, '', `#${sectionId}`);
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  };
+
   return (
     <footer className="bg-black text-white">
       <div className="container mx-auto px-6 py-12">
@@ -9,7 +27,18 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Logo and Description */}
           <div className="flex flex-col items-center md:items-start">
-            <Link to="/" className="mb-4">
+            <Link 
+              to="/" 
+              onClick={(e) => {
+                e.preventDefault();
+                if (pathname !== '/') {
+                  window.location.href = '/';
+                } else {
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+              }}
+              className="mb-4"
+            >
               <img 
                 src="/images/villano-fitness-logo.png" 
                 alt="Villano Fitness"
@@ -26,22 +55,64 @@ const Footer: React.FC = () => {
             <h3 className="text-[#bca16b] font-medium mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-gray-400 hover:text-[#bca16b] transition-colors">Home</Link>
+                <Link 
+                  to="/" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (pathname !== '/') {
+                      window.location.href = '/';
+                    } else {
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                  }}
+                  className="text-gray-400 hover:text-[#bca16b] transition-colors"
+                >
+                  Home
+                </Link>
               </li>
               <li>
-                <Link to="/#feel-good-move-better" className="text-gray-400 hover:text-[#bca16b] transition-colors">Services</Link>
+                <Link 
+                  to="/#feel-good-move-better" 
+                  onClick={(e) => scrollToSection(e, 'feel-good-move-better')}
+                  className="text-gray-400 hover:text-[#bca16b] transition-colors"
+                >
+                  Services
+                </Link>
               </li>
               <li>
-                <Link to="/#gallery" className="text-gray-400 hover:text-[#bca16b] transition-colors">Gallery</Link>
+                <Link 
+                  to="/#gallery" 
+                  onClick={(e) => scrollToSection(e, 'gallery')}
+                  className="text-gray-400 hover:text-[#bca16b] transition-colors"
+                >
+                  Gallery
+                </Link>
               </li>
               <li>
-                <Link to="/#flow-strength-balance" className="text-gray-400 hover:text-[#bca16b] transition-colors">Flow, Strength & Balance</Link>
+                <Link 
+                  to="/#flow-strength-balance" 
+                  onClick={(e) => scrollToSection(e, 'flow-strength-balance')}
+                  className="text-gray-400 hover:text-[#bca16b] transition-colors"
+                >
+                  Flow, Strength & Balance
+                </Link>
               </li>
               <li>
-                <Link to="/#about-victoria" className="text-gray-400 hover:text-[#bca16b] transition-colors">About Me</Link>
+                <Link 
+                  to="/#about-victoria" 
+                  onClick={(e) => scrollToSection(e, 'about-victoria')}
+                  className="text-gray-400 hover:text-[#bca16b] transition-colors"
+                >
+                  About Me
+                </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-gray-400 hover:text-[#bca16b] transition-colors">Contact</Link>
+                <Link 
+                  to="/contact" 
+                  className="text-gray-400 hover:text-[#bca16b] transition-colors"
+                >
+                  Contact
+                </Link>
               </li>
             </ul>
           </div>
