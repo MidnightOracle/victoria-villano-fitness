@@ -1,10 +1,45 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import emailjs from '@emailjs/browser'
 
 const Contact: React.FC = () => {
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Add form submission logic here
-  };
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(null)
+
+  // Initialize EmailJS with your public key
+  useEffect(() => {
+    emailjs.init('Px3HGzTMd41HnjaxQ')
+  }, [])
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setSubmitStatus(null)
+
+    try {
+      const form = e.currentTarget
+      const formData = new FormData(form)
+      const data = {
+        from_name: formData.get('name'),
+        from_email: formData.get('email'),
+        message: formData.get('message'),
+        to_email: 'support@rohogaka.com'
+      }
+
+      await emailjs.send(
+        'service_6dxsoeb',
+        'template_imcasvb',
+        data
+      )
+
+      setSubmitStatus('success')
+      form.reset()
+    } catch (error) {
+      console.error('Error sending email:', error)
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
   return (
     <div className="min-h-screen bg-[#bca16b]">
@@ -22,6 +57,16 @@ const Contact: React.FC = () => {
       <section className="pb-16 md:pb-24">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto bg-white rounded-[24px] md:rounded-[32px] p-6 sm:p-8 md:p-12 shadow-xl">
+            {submitStatus === 'success' && (
+              <div className="mb-6 p-4 bg-green-100 text-green-700 rounded-lg">
+                Thank you for your message! We'll get back to you soon.
+              </div>
+            )}
+            {submitStatus === 'error' && (
+              <div className="mb-6 p-4 bg-red-100 text-red-700 rounded-lg">
+                There was an error sending your message. Please try again later.
+              </div>
+            )}
             <form onSubmit={handleSubmit} className="space-y-6 md:space-y-8">
               <div>
                 <label htmlFor="name" className="block text-base sm:text-lg font-medium mb-2 md:mb-3 text-black">
@@ -34,6 +79,7 @@ const Contact: React.FC = () => {
                   className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-gray-50 border border-gray-200 rounded-lg md:rounded-xl focus:outline-none focus:ring-2 focus:ring-[#bca16b] text-black text-base sm:text-lg"
                   placeholder="Your name"
                   required
+                  disabled={isSubmitting}
                 />
               </div>
 
@@ -48,6 +94,7 @@ const Contact: React.FC = () => {
                   className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-gray-50 border border-gray-200 rounded-lg md:rounded-xl focus:outline-none focus:ring-2 focus:ring-[#bca16b] text-black text-base sm:text-lg"
                   placeholder="Your email"
                   required
+                  disabled={isSubmitting}
                 />
               </div>
 
@@ -62,14 +109,16 @@ const Contact: React.FC = () => {
                   className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-gray-50 border border-gray-200 rounded-lg md:rounded-xl focus:outline-none focus:ring-2 focus:ring-[#bca16b] text-black text-base sm:text-lg"
                   placeholder="Tell me about your fitness goals..."
                   required
+                  disabled={isSubmitting}
                 ></textarea>
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-black text-white py-3 sm:py-4 px-6 sm:px-8 rounded-lg md:rounded-xl hover:bg-gray-900 transition-colors font-medium text-base sm:text-lg"
+                className="w-full bg-black text-white py-3 sm:py-4 px-6 sm:px-8 rounded-lg md:rounded-xl hover:bg-gray-900 transition-colors font-medium text-base sm:text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled={isSubmitting}
               >
-                Send Message
+                {isSubmitting ? 'Sending...' : 'Send Message'}
               </button>
             </form>
           </div>
@@ -85,8 +134,8 @@ const Contact: React.FC = () => {
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-black font-medium text-base sm:text-lg">Email:</span>
-                <a href="mailto:victoria@example.com" className="text-black font-bold text-base sm:text-lg hover:underline">
-                  victoria@example.com
+                <a href="mailto:support@rohogaka.com" className="text-black font-bold text-base sm:text-lg hover:underline">
+                  support@rohogaka.com
                 </a>
               </div>
             </div>
