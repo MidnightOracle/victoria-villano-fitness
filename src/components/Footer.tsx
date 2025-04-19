@@ -42,7 +42,7 @@ const Footer: React.FC = () => {
               <img 
                 src="/images/villano-fitness-logo.png" 
                 alt="Villano Fitness"
-                className="h-20 md:h-24 w-auto"
+                className="h-24 md:h-28 w-auto"
               />
             </Link>
             <p className="text-gray-400 text-center md:text-left">

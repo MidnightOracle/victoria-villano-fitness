@@ -134,7 +134,7 @@ export default function Navbar() {
               alt="Villano Fitness"
               width="200"
               height="80" 
-              className="h-10 md:h-14 w-auto transition-opacity hover:opacity-80"
+              className="h-14 md:h-20 w-auto transition-opacity hover:opacity-80"
               style={{
                 filter: 'drop-shadow(2px 2px 2px rgba(0,0,0,0.5))'
               }}
