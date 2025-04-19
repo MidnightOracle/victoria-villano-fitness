@@ -126,7 +126,7 @@ export default function Navbar() {
 
       {/* Header/Nav */}
       <header className="fixed top-0 left-0 right-0 z-40 transition-all duration-300 bg-black/20 backdrop-blur-[2px]">
-        <div className="container mx-auto px-6 py-3 flex items-center justify-between">
+        <div className="container mx-auto px-6 py-1.5 md:py-3 flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center flex-shrink-0 -mt-1">
             <img 
@@ -134,7 +134,7 @@ export default function Navbar() {
               alt="Villano Fitness"
               width="200"
               height="80" 
-              className="h-14 md:h-20 w-auto transition-opacity hover:opacity-80"
+              className="h-12 md:h-16 w-auto transition-opacity hover:opacity-80"
               style={{
                 filter: 'drop-shadow(2px 2px 2px rgba(0,0,0,0.5))'
               }}
